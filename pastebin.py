@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 
-# Usage: ./pastebin.py filename
-# use - as filename for stdin
 # Requires http://wwwsearch.sourceforge.net/mechanize/
 
 import mechanize
 import sys
 import os
 
+if len(sys.argv) is not 2:
+	print "Usage: %s filename\nuse - as filename for stdin" % sys.argv[0]
+	os._exit(1)
+	  
 br = mechanize.Browser()
 br.open("http://pastebin.com/")
 
