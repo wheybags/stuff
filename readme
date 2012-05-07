@@ -3,3 +3,10 @@ Small stuff I think may be useful.
  - pastebin.py
  	Simple script to post a file to pastebin.
 	Use - as filename for stdin.
+
+- extract
+	Shell script to extract archive to corresponding folder
+	e.g extract abc.zip will extract to folder ./abc
+	Can also specify a specific directory instead as second parameter
+	supports zip, rar, tar.gz, tar.bz
+	I'll add more if and when I need them :P
