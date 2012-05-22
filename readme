@@ -1,6 +1,6 @@
 Small stuff I think may be useful.
 
- - pastebin.py
+- pastebin.py
  	Simple script to post a file to pastebin.
 	Use - as filename for stdin.
 
