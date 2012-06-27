@@ -8,5 +8,5 @@ Small stuff I think may be useful.
 	Shell script to extract archive to corresponding folder
 	e.g extract abc.zip will extract to folder ./abc
 	Can also specify a specific directory instead as second parameter
-	supports zip, rar, tar.gz, tar.bz
+	supports zip, rar, tar.gz, tgz, tar.bz
 	I'll add more if and when I need them :P
