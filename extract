@@ -11,6 +11,8 @@ fi
 archive=`readlink -f "$1"`
 ext=`echo "$1"|awk -F . '{print $NF}'`
 
+echo $ext
+
 if [ $# -lt 2 ]
 	then
 	extractdir=`basename $1 .$ext`
@@ -23,9 +25,12 @@ else
 	echo $extractdir
 fi
 
+done=false
+
 if   [ "$ext" = "zip" ]
 	then
 	unzip "$archive" -d "$extractdir"
+	done=true
 
 elif [ "$ext" = "rar" ]
 	then
@@ -37,10 +42,13 @@ elif [ "$ext" = "rar" ]
 	
 	cd "$extractdir"	
 	unrar x "$archive"
+	done=true
 
-# If file is .tar.something
-elif [ `echo "$1" | awk -F . '{print $(NF-1)}'` = "tar" ]
+
+# If file is .tar.something or .tgz
+elif [ `echo "$1" | awk -F . '{print $(NF-1)}'` = "tar" -o "$ext" = "tgz" ]
 	then
+		echo "asasdasd"
 		dirmade=false
 		if [ ! -d "$extractdir" ]
 			then
@@ -48,18 +56,27 @@ elif [ `echo "$1" | awk -F . '{print $(NF-1)}'` = "tar" ]
 			dirmade=true
 		fi
 		
-		if [ "$ext" = "gz" ]
+		if [ "$ext" = "gz" -o "$ext" = "tgz" ]
 			then
 			tar xvzf "$archive" -C "$extractdir"
+			done=true
 
 		elif [ "$ext" = "bz2" ]
 			then
 			tar xvjf "$archive" -C "$extractdir"
+			done=true
 		
 		# If it couldnt extract, remove the folder
 		elif [ $dirmade = true ]
 			then
 			rmdir $extractdir
 		fi
-	
+
+fi
+
+if [ done ]
+	then
+	exit 0
+else
+	exit 1
 fi
